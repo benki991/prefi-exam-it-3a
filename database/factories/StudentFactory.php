@@ -2,7 +2,6 @@
 
 namespace Database\Factories;
 
-use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -20,9 +19,9 @@ class StudentFactory extends Factory
         return [
             'firstname' => $this->faker->firstName(),
             'lastname'  => $this->faker->lastName(),
-            'birthdate' => $this->faker->date(),
+            'birthdate' => $this->faker->date('Y-m-d'),
             'sex'       => array_rand(['MALE' => 'MALE', 'FEMALE' => 'FEMALE']),
-            'address'   => $this->faker->address(),
+            'address'   => $this->faker->city(),
             'year'      => rand(1, 4),
             'course'    => array_rand([
                 'BSCS'  => 'BSCS',
