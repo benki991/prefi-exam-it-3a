@@ -10,6 +10,7 @@ class Subject extends Model
     use HasFactory;
 
     protected $fillable = [
+        'student_id',
         'subject_code',
         'name',
         'description',

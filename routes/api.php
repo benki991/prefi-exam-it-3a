@@ -10,7 +10,7 @@ Route::post('/students', [StudentController::class, 'create']);
 Route::get('/students/{id}', [StudentController::class, 'student']);
 Route::patch('/students/{id}', [StudentController::class, 'update']);
 
-Route::get('/students/{id}/subjects', [SubjectController::class, 'student']);
+Route::get('/students/{id}/subjects', [SubjectController::class, 'index']);
 Route::post('/students/{id}/subjects', [SubjectController::class, 'student']);
 Route::get('/students/{id}/subjects/{subject_id}', [SubjectController::class, 'student']);
 Route::patch('/students/{id}/subjects/{subject_id}', [SubjectController::class, 'student']);
