@@ -23,6 +23,8 @@ return new class extends Migration
             $table->decimal('midterms');
             $table->decimal('prefinals');
             $table->decimal('finals');
+            $table->decimal('average')->nullable();
+            $table->string('date_taken');
             $table->timestamps();
         });
     }

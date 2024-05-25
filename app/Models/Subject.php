@@ -20,5 +20,6 @@ class Subject extends Model
         'midterms',
         'prefinals',
         'finals',
+        'date_taken'
     ];
 }

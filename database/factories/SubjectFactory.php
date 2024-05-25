@@ -23,11 +23,16 @@ class SubjectFactory extends Factory
             'name'          => array_rand(['SYSTEM ADMIN' => 'SYSTEM ADMIN', 'DBMS' => 'DBMS']),
             'description'   => $this->faker->paragraph(2),
             'instructor'    => $this->faker->name(),
-            'schedule'      => 'test',
-            'prelims'       => rand(1,5),
-            'midterms'      => rand(1,5),
-            'prefinals'     => rand(1,5),
-            'finals'        => rand(1,5)
+            'schedule'      => array_rand([
+                'MW 1pm-3pm' => 'MW 1pm-3pm',
+                'MW 3pm-5pm' => 'MW 3pm-5pm',
+            ]),
+            'prelims'       => mt_rand(1.0*10, 5.0*10)/10,
+            'midterms'      => mt_rand(1.0*10, 5.0*10)/10,
+            'prefinals'     => mt_rand(1.0*10, 5.0*10)/10,
+            'finals'        => mt_rand(1.0*10, 5.0*10)/10,
+            'average'       => mt_rand(1.0*10, 5.0*10)/10,
+            'date_taken'    => $this->faker->date('Y-m-d')
         ];
     }
 }
