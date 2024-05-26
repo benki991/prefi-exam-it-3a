@@ -10,18 +10,6 @@ class SubjectController extends Controller
     public function index(Request $request, $id){
         $fields = [];
         $subject = Subject::query()->where('student_id','=',$id);
-        //$subject2 = Subject::selectRaw('prelims, midterms, prefinals, finals, SUM(prelims + midterms + prefinals + finals) / 4 as average')->where('student_id','=',$id)->get();
-        // $data = $subject->get() . $average;
-        // $ids = $subject->id;
-        // $student_id = $subject->select('student_id');
-        // $merge = $ids->merge($student_id);
-        $data = [
-            // 'data' => Subject::query()->where('student_id','=',$id)->get(),
-            // 'grades' => Subject::query()->select('prelims', 'midterms', 'prefinals', 'finals')->where('student_id','=',$id)->get(),
-
-
-
-        ];
 
         if ($request->get('sort') && $request->get('direction')) {
             $subject->orderBy($request->get('sort'), $request->get('direction'));
@@ -54,5 +42,34 @@ class SubjectController extends Controller
             return $result;
         }
         return response()->json($fields ? $subject->get($fields) : $subject->get());
+    }
+    public function create_subject(Request $request, $id){
+        $newSubject = Subject::create([
+            'student_id'    => $id,
+            'subject_code'  => $request->subject_code,
+            'name'          => $request->name,
+            'description'   => $request->description,
+            'instructor'    => $request->instructor,
+            'schedule'      => $request->schedule,
+            'prelims'       => $request->prelims,
+            'midterms'      => $request->midterms,
+            'prefinals'     => $request->prefinals,
+            'finals'        => $request->finals,
+            'average'       => $request->average,
+            'date_taken'    => $request->date_taken
+        ]);
+        $subject = Subject::query();
+        return response()->json($subject->where('id', '=', $newSubject->id)->get());
+    }
+    public function update_subject(Request $request, $id)
+    {
+        $subject = Subject::query()->where('id','=', $id);
+        $subject->update($request->all());
+        return response()->json($subject->get());
+    }
+    public function subject($id, $subject_id)
+    {
+        $subject = Subject::query()->where('student_id','=',$id)->where('id','=',$subject_id);
+        return response()->json($subject->get());
     }
 }
